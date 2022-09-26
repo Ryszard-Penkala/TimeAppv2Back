@@ -1,6 +1,7 @@
-import { Controller, Get, Inject, Param } from '@nestjs/common';
+import { Controller, Get, Inject, Param, UseGuards } from "@nestjs/common";
 import { TimeReportService } from './time-report.service';
 import { TimeReportInterface } from '../../types/time-report/time-report.entity';
+import { AuthGuard } from "@nestjs/passport";
 
 @Controller('time-report')
 export class TimeReportController {
@@ -12,6 +13,7 @@ export class TimeReportController {
   }
 
   @Get('/all-users')
+  // @UseGuards(AuthGuard('jwt'))
   getAllUsersReport(): TimeReportInterface[] {
     return this.timeReportService.getAllUsersReport();
   }

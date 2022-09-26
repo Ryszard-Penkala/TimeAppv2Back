@@ -1,9 +1,9 @@
 import { Controller, Delete, Get, Inject, Param, Post, Redirect, UseGuards } from "@nestjs/common";
 import { TimeRegistrationService } from './time-registration.service';
 import { startNewTaskResponse, TimeRegistrationTaskInterface } from "../../types/time-registration/time-registration-task.entity";
-import { AuthGuard } from "@nestjs/passport";
-import { UserObj } from "../decorators/user-obj.decorator";
-import { User } from "../user/user.entity";
+import { AuthGuard } from '@nestjs/passport';
+import { UserObj } from '../decorators/user-obj.decorator';
+import { User } from '../user/user.entity';
 
 @Controller('time-registration')
 export class TimeRegistrationController {
@@ -14,9 +14,7 @@ export class TimeRegistrationController {
 
   @Get('/')
   @UseGuards(AuthGuard('jwt'))
-  getAllTasks(
-    @UserObj() user: User,
-  ): Promise<TimeRegistrationTaskInterface[]> {
+  getAllTasks(@UserObj() user: User): Promise<TimeRegistrationTaskInterface[]> {
     return this.timeRegistrationService.getAllTasks();
   }
 

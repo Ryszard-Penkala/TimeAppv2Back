@@ -14,8 +14,6 @@ export class UserService {
 
   async register(newUser: RegisterDto): Promise<RegisterUserResponse> {
     const user = new User();
-    console.log(`newUseremail: ${newUser.email}`);
-    console.log(`neUserpwd: ${newUser.pwdHash}`);
     user.email = newUser.email;
     user.pwdHash = await (hashPwd(newUser.pwdHash));
 
