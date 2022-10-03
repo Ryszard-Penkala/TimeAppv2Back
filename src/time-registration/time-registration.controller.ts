@@ -12,11 +12,11 @@ export class TimeRegistrationController {
     private readonly timeRegistrationService: TimeRegistrationService,
   ) {}
 
-  @Get('/')
-  @UseGuards(AuthGuard('jwt'))
-  getAllTasks(@UserObj() user: User): Promise<TimeRegistrationTaskInterface[]> {
-    return this.timeRegistrationService.getAllTasks();
-  }
+  // @Get('/')
+  // @UseGuards(AuthGuard('jwt'))
+  // getAllTasks(@UserObj() user: User): Promise<TimeRegistrationTaskInterface[]> {
+  //   return this.timeRegistrationService.getAllTasks();
+  // }
 
   @Post('/')
   startNewTask(): Promise<startNewTaskResponse> {
