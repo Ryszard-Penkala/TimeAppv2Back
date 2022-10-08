@@ -2,11 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { getAllUsersReportResponse, getCurrentUserReportResponse } from "../../types/time-report/time-report.entity";
 import { TimeRegistrationTaskInterface } from "../../types";
 import { TimeRegistrationTask } from '../time-registration/time-registration-task.entity';
+import { User } from '../user/user.entity';
 
 @Injectable()
 export class TimeReportService {
-  getHello(): string {
-    return 'TimeReport Witaj';
+  async getId(user: User): Promise<string> {
+
+    return JSON.stringify(user.id);
   }
 
   async getAllTasks(): Promise<TimeRegistrationTask[]> {
