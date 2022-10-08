@@ -6,6 +6,7 @@ import { User } from '../user/user.entity';
 
 @Injectable()
 export class TimeReportService {
+
   async getId(user: User): Promise<string> {
 
     return JSON.stringify(user.id);
@@ -68,32 +69,14 @@ export class TimeReportService {
   //   ];
   // }
 
-  getCurrentUserReport(id: string): getCurrentUserReportResponse {
-    return [
-      {
-        userName: 'Ryszard',
-        id: 'd61995c5-7915-4444-8858-316350d899c0',
-        startedAt: new Date('2022-02-27T19:50:55.645Z'),
-        daysOfEffort: 0,
-        minutesOfEffort: 12,
-        taskDescription: 'zbić krzesło',
+  async getCurrentUserReport(id: string): Promise<TimeRegistrationTaskInterface[]> {
+    return await TimeRegistrationTask.find({
+      relations: ['affectedUser'],
+      where: {
+        affectedUser: {
+          id: id,
+        },
       },
-      {
-        userName: 'Ryszard',
-        id: 'd61995c6-7915-4444-8858-316350d899c0',
-        startedAt: new Date('2022-02-27T19:50:55.645Z'),
-        daysOfEffort: 0,
-        minutesOfEffort: 12,
-        taskDescription: 'rozzbić krzesło',
-      },
-      {
-        userName: 'Ryszard',
-        id: 'd61995c7-7915-4444-8858-316350d899c0',
-        startedAt: new Date('2022-02-27T19:50:55.645Z'),
-        daysOfEffort: 0,
-        minutesOfEffort: 12,
-        taskDescription: 'zbić znowu krzesło',
-      },
-    ];
+    });
   }
 }

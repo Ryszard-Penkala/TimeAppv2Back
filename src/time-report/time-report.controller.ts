@@ -1,10 +1,11 @@
 import { Controller, Get, Inject, Param, UseGuards } from '@nestjs/common';
 import { TimeReportService } from './time-report.service';
-import { TimeReportInterface } from '../../types/time-report/time-report.entity';
+import { getCurrentUserReportResponse, TimeReportInterface } from "../../types/time-report/time-report.entity";
 import { AuthGuard } from '@nestjs/passport';
 import { TimeRegistrationTask } from '../time-registration/time-registration-task.entity';
 import { UserObj } from '../decorators/user-obj.decorator';
 import { User } from '../user/user.entity';
+import { TimeRegistrationTaskInterface } from "../../types";
 
 @Controller('time-report')
 export class TimeReportController {
@@ -27,8 +28,8 @@ export class TimeReportController {
   @Get('/:id')
   getCurrentUserReport(
     @Param('id') id: string,
-    @UserObj() user: User,
-  ): TimeReportInterface[] | [] {
+    // @UserObj() user: User,
+  ): Promise<TimeRegistrationTaskInterface[]> | null {
     return this.timeReportService.getCurrentUserReport(id);
   }
 }
