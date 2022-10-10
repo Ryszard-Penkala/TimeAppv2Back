@@ -69,12 +69,24 @@ export class TimeReportService {
   //   ];
   // }
 
-  async getCurrentUserReport(id: string): Promise<TimeRegistrationTaskInterface[]> {
+  async getCurrentUserReport(
+    userId: string,
+  ): Promise<TimeRegistrationTaskInterface[]> {
     return await TimeRegistrationTask.find({
+      select: {
+        id: true,
+        daysOfEffort: true,
+        minutesOfEffort: true,
+        taskDescription: true,
+        startedAt: true,
+        affectedUser: {
+          id: true,
+        },
+      },
       relations: ['affectedUser'],
       where: {
         affectedUser: {
-          id: id,
+          id: userId,
         },
       },
     });

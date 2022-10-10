@@ -5,7 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { TimeRegistrationTask } from '../time-registration/time-registration-task.entity';
 import { UserObj } from '../decorators/user-obj.decorator';
 import { User } from '../user/user.entity';
-import { TimeRegistrationTaskInterface } from "../../types";
+import { TimeRegistrationTaskInterface } from '../../types';
 
 @Controller('time-report')
 export class TimeReportController {
@@ -25,11 +25,10 @@ export class TimeReportController {
     return this.timeReportService.getAllTasks();
   }
 
-  @Get('/:id')
+  @Get('/:userId')
   getCurrentUserReport(
-    @Param('id') id: string,
-    // @UserObj() user: User,
+    @Param('userId') userId: string,
   ): Promise<TimeRegistrationTaskInterface[]> | null {
-    return this.timeReportService.getCurrentUserReport(id);
+    return this.timeReportService.getCurrentUserReport(userId);
   }
 }
