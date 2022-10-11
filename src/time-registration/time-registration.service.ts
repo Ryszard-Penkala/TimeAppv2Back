@@ -6,9 +6,9 @@ import { TimeRegistrationTaskInterface } from '../../types/time-registration/tim
 export class TimeRegistrationService {
   constructor() {}
   //
-  // async getAllTasks(): Promise<TimeRegistrationTaskInterface[]> {
-  //   return await TimeRegistrationTask.find();
-  // }
+  async getAllTasks(): Promise<TimeRegistrationTaskInterface[]> {
+    return await TimeRegistrationTask.find();
+  }
 
   async startNewTask(): Promise<TimeRegistrationTask> {
     const newTask = new TimeRegistrationTask();

@@ -7,3 +7,4 @@ export interface TimeRegistrationTaskInterface {
 }
 
 export type startNewTaskResponse = TimeRegistrationTaskInterface;
+
